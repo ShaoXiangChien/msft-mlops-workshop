@@ -1,0 +1,6 @@
+accountUrl = <storage_account_url>
+containerName = <container_name>
+blobConnCredential = <blob_conn_credential>
+senderEmail = <sender_email>
+receiverEmail = <receiver_email>
+emailMFAToken = <email_MFA_token>

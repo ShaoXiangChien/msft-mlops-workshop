@@ -1,0 +1,7 @@
+azure-storage-blob
+azure-identity
+scikit-learn
+scipy
+matplotlib
+pandas
+azureml-core
