@@ -15,8 +15,8 @@ variables:
   enable_monitoring: true
 
   # Azure DevOps
-  ado_service_connection_rg: azure-service-connection
-  ado_service_connection_aml_ws: azure-service-connection
+  ado_service_connection_rg: azure-resource-connection
+  ado_service_connection_aml_ws: azure-resource-connection
 
   # DO NOT TOUCH
 
