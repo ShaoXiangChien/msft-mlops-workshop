@@ -7,7 +7,7 @@ from azureml.core import Workspace, Model
 import os
 
 def load_model():
-    with open("./model/model.pkl", "rb") as f:
+    with open("./training-pipeline/model/model.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
@@ -17,11 +17,10 @@ def load_data():
 def register_model(score: float):
     print("registering the model")
     now = dt.now()
-    ws = Workspace.from_config()
+    ws = Workspace.from_config("./training-pipeline")
 
-    model = Model.register(model_path="./model",
+    model = Model.register(model_path="./training-pipeline/model",
                             model_name="diabetes_model",
-                            version=f"{now.year-1}{now.month}",
                             tags={'tags': "test", "date": now.strftime("%Y-%m-%d")},
                             description="svm model to predict diabetes",
                             workspace=ws)
@@ -35,9 +34,9 @@ def register_model(score: float):
 def email_report(better: bool, info: dict):
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
-    sender_email = os.getenv("senderEmail")  # Enter your address
-    receiver_email = os.getenv("receiverEmail")  # Enter receiver address
-    password = os.getenv("emailMFAToken")
+    sender_email = "<sender_email>"  # Enter your address
+    receiver_email = "<receiver_email>"  # Enter receiver address
+    password = "<email_MFA_token>"
     message = f"""
     The newly trained model has outperformed the previous one with accuracy of {info['accuracy']}.
     

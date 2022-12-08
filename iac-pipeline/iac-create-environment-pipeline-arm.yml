@@ -1,10 +1,9 @@
-# CI/PR Pipeline that deploys an ARM template to create or update the resources needed by the other pipelines.
+trigger: none
 
 variables:
   - template: ./config-infra.yml
   - name: WORKSPACE_SKU # https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml#sku
     value: basic
-
 
 pool:
   vmImage: $(ap_vm_image)
@@ -17,7 +16,7 @@ steps:
       resourceGroupName: "$(resource_group)"
       location: $(location)
       templateLocation: "Linked artifact"
-      csmFile: "$(Build.SourcesDirectory)/cloud-environment.json"
+      csmFile: "./iac-pipeline/cloud-environment.json"
       overrideParameters: "-baseName $(namespace) -location $(location) -workspace $(aml_workspace) -sku $(WORKSPACE_SKU)"
       deploymentMode: "Incremental"
     displayName: "Deploy MLOps resources to Azure"

@@ -7,10 +7,10 @@ import os
 
 default_credential = DefaultAzureCredential()
 # prepare two versions of data
-blob = BlobClient(account_url=os.getenv("accountUrl"),
-              container_name=os.getenv("containerName"),
-              blob_name="diabetes-data",
-              credential=os.getenv("blobConnCredential"))
+blob = BlobClient(account_url="https://<storage_account_url>.blob.core.windows.net",
+              container_name="azureml",
+              blob_name="diabetes-data.csv",
+              credential="<blob_conn_credential>")
 
 def load_data():
     globals()
