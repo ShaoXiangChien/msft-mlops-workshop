@@ -11,7 +11,6 @@ def init():
         model = pickle.load(f)
 
 
-
 def run(data):
     test = json.loads(data)
 
@@ -20,4 +19,4 @@ def run(data):
     y_pred = model.predict(X)
     df['Prediction'] = y_pred
     print(f"received data {test}")
-    return df.to_json()
+    return df[['PatientID', 'Prediction']].to_json()
