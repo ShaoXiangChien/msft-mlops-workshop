@@ -20,12 +20,12 @@ def register_model(score: float):
     ws = Workspace.from_config("./training-pipeline")
 
     model = Model.register(model_path="./training-pipeline/model",
-                            model_name="diabetes_model",
+                            model_name="diabetes_model_test",
                             tags={'tags': "test", "date": now.strftime("%Y-%m-%d")},
                             description="svm model to predict diabetes",
                             workspace=ws)
     email_report(True, {
-        "name": "diabetes-model",
+        "name": "diabetes_model_test",
         "version": f"{now.year}{now.month}",
         "tags": "test",
         "accuracy": f"{score * 100 :.2f}%"
