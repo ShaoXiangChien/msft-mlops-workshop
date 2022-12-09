@@ -7,7 +7,7 @@ from azureml.core import Workspace, Model
 import os
 
 def load_model():
-    with open("./training-pipeline/model/model.pkl", "rb") as f:
+    with open("./model/model.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
@@ -17,9 +17,9 @@ def load_data():
 def register_model(score: float):
     print("registering the model")
     now = dt.now()
-    ws = Workspace.from_config("./training-pipeline")
+    ws = Workspace.from_config("./model")
 
-    model = Model.register(model_path="./training-pipeline/model",
+    model = Model.register(model_path="./model",
                             model_name="diabetes_model_test",
                             description="svm model to predict diabetes",
                             workspace=ws)

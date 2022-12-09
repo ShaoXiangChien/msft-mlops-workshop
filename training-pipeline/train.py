@@ -8,7 +8,7 @@ def train(X_train, y_train):
     # fit the svm_model on the whole dataset
     svm_model.fit(X_train, y_train)
 
-    with open("./trainging-pipeline/model/model.pkl", "wb") as fh:
+    with open("./model/model.pkl", "wb") as fh:
         pickle.dump(svm_model, fh)
 
 def load_data():
