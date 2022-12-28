@@ -23,12 +23,14 @@ def register_model(score: float):
                             model_name="test_diabetes_model",
                             description="svm model to predict diabetes",
                             workspace=ws)
+    """
     email_report(True, {
         "name": "diabetes_model_test",
         "version": f"{now.year}{now.month}",
         "tags": "test",
         "accuracy": f"{score * 100 :.2f}%"
     })
+    """
 
 def email_report(better: bool, info: dict):
     port = 465  # For SSL
