@@ -11,6 +11,7 @@
         "storageEnabled": true
     },
     "authEnabled": true,
+    "applicationInsightsEnabled": true,
     "containerResourceRequirements": {
         "cpu": 0.5,
         "memoryInGB": 1.0
