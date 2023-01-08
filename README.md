@@ -1,4 +1,3 @@
-# msft-mlops-workshop
 # Introduction
 - Goals of this workshop
   - Infrastructure As Code
