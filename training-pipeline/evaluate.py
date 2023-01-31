@@ -20,7 +20,7 @@ def register_model(score: float):
     ws = Workspace.from_config("./model")
 
     model = Model.register(model_path="./model",
-                            model_name="<name>_diabetes_model",
+                            model_name="test_diabetes_model",
                             description="svm model to predict diabetes",
                             workspace=ws)
     """
