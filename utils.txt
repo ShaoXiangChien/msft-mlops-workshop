@@ -1,0 +1,27 @@
+Release Pipeline Script
+
+Test Stage
+- Download Model
+
+$id = az ml model list -g $(resourceGroupName) --query "[0].id" -w $(workspaceName) -n $(modelName)
+az ml model download -g $(resourceGroupName) --workspace-name $(workspaceName) --model-id $id --target-dir "."
+
+- Deploy to ACI
+
+cd model
+$vnum = az ml model list -g $(resourceGroupName) --query "[0].version" -w $(workspaceName) -n $(modelName)
+az ml model deploy -g $(resourceGroupName) -w $(workspaceName) --name test-env-aci --overwrite -m $(modelName):$vnum --cp aci --ic ./inferenceConfig.json --dc ./testDeploymentConfig.json
+
+Prod Stage
+- Download Model and Update Model Name
+
+$id = az ml model list -g $(resourceGroupName) --query "[0].id" -w $(workspaceName) -n $(modelName)
+az ml model download -g $(resourceGroupName) --workspace-name $(workspaceName) --model-id $id --target-dir "."
+pip install azure-identity pandas azureml-core
+python ./model/update_tag.py
+
+- Deploy to AKS
+
+cd model
+$vnum = az ml model list -g $(resourceGroupName) --query "[0].version" -w $(workspaceName) -n $(modelName)
+az ml model deploy -g $(resourceGroupName) -w $(workspaceName) --name prod-deployment-aks --overwrite -m $(modelName):$vnum --cp aks --ct aks-for-mlops --ic ./inferenceConfig.json --dc ./deploymentConfig.json
